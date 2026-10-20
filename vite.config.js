@@ -1,10 +1,12 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
-  if (!env.TMDB_API_KEY) {
+  // Only the local dev server needs the key here.
+  // On Vercel, the serverless function in /api reads it instead.
+  if (command === 'serve' && !env.TMDB_API_KEY) {
     throw new Error('TMDB_API_KEY is missing. Add it to your local .env file.');
   }
 
