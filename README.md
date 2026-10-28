@@ -1,16 +1,17 @@
-# React + Vite
+# Wadeje Movies
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React and Vite movie browser powered by TMDB.
 
-Currently, two official plugins are available:
+## Netlify setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Set `TMDB_API_KEY` in the site's Netlify environment variables. Use the TMDB API key (v3 auth), enable access for Functions, and provide a value for each deploy context you use, including Production and Deploy Previews. Redeploy after changing the setting. Never prefix this key with `VITE_` or put it in browser code.
 
-## React Compiler
+Requests to `/api/tmdb/*` run through a Netlify Function that forwards them to TMDB API v3. The key stays on the server. Client routes fall back to `index.html` so direct links to movie details and searches work.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local development
 
-## Expanding the Oxlint configuration
+Install dependencies with `npm install`. Copy `.env.example` to `.env` and set `TMDB_API_KEY`, then run `npm run dev`. The Vite development server proxies TMDB requests locally. Restart it after changing `.env`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+To test the deployed Netlify Function locally, use `netlify dev --port 8889` with the key available in the local development context.
+
+Run `npm run lint` to check the source.
