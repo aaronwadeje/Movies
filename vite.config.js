@@ -5,7 +5,7 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   // Only the local dev server needs the key here.
-  // On Vercel, the serverless function in /api reads it instead.
+  // On Netlify, netlify/functions/tmdb.mts reads it server-side instead.
   if (command === 'serve' && !env.TMDB_API_KEY) {
     throw new Error('TMDB_API_KEY is missing. Add it to your local .env file.');
   }

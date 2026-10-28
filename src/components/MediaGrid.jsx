@@ -52,7 +52,7 @@ export default function MediaGrid({ title, path, params = {} }) {
           severity="error"
           action={<Button color="inherit" size="small" onClick={() => setAttempt((value) => value + 1)}>Retry</Button>}
         >
-          {error}. Check that your TMDB key is valid and restart the dev server.
+          {error}
         </Alert>
       )}
 
