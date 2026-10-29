@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { IMG, tmdb } from '../api';
+import WatchlistButton from '../components/WatchlistButton';
 
 export default function TitleDetails() {
   const { mediaType, id } = useParams();
@@ -71,6 +72,9 @@ export default function TitleDetails() {
       )}
       <Stack spacing={2} sx={{ maxWidth: 960 }}>
         <Typography variant="h3" component="h1" sx={{ fontWeight: 800 }}>{name}</Typography>
+        <Box>
+          <WatchlistButton item={title} mediaType={mediaType} />
+        </Box>
         <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" alignItems="center">
           {releaseDate && <Typography color="text.secondary">{releaseDate.slice(0, 4)}</Typography>}
           {title.runtime && <Typography color="text.secondary">{title.runtime} min</Typography>}

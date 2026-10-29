@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
-  Alert, Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Typography,
+  Alert, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, CircularProgress, Typography,
 } from '@mui/material';
 import { IMG, tmdb } from '../api';
+import WatchlistButton from './WatchlistButton';
 
 export default function MediaGrid({ title, path, params = {} }) {
   const [items, setItems] = useState([]);
@@ -92,6 +93,9 @@ export default function MediaGrid({ title, path, params = {} }) {
                   </Typography>
                 </CardContent>
                 </CardActionArea>
+                <CardActions>
+                  <WatchlistButton item={item} mediaType={mediaType} compact />
+                </CardActions>
               </Card>
             );
           })}
